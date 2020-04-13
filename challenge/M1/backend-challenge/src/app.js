@@ -3,6 +3,8 @@ const cors = require("cors");
 const { uuid, isUuid } = require('uuidv4');
 
 const app = express();
+app.use(cors());
+app.use(express.json());
 
 function validateLikes(request, response, next){
   const {likes} = request.body;
@@ -11,9 +13,6 @@ function validateLikes(request, response, next){
   };
   return next();
 }
-
-app.use(express.json());
-app.use(cors());
 
 const repositories = [];
 
