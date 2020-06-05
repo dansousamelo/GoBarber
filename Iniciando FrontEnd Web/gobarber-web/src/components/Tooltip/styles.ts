@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  /* Todo position absolute  que tá dentro desse container ai ser relativo
+  ao container e não ao restante da tela */
   position: relative;
 
   span {
@@ -21,6 +23,7 @@ export const Container = styled.div`
 
     color: #312e38;
 
+    /* Exibe o triângulozinho */
     &::before {
       content: '';
       border-style: solid;

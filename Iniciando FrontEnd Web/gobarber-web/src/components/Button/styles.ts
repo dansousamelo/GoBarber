@@ -11,7 +11,10 @@ export const Container = styled.button`
   width: 100%;
   font-weight: 500;
   margin-top: 16px;
-  transition: background-color 0.2s;
+  /* Usamos o polished para escurecer o botão quando
+      passarmos o mouse por cima e acrescentaremos uma transição
+      de 0,2 segundos */
+  transition: backgorund-color 0.2s;
 
   &:hover {
     background: ${shade(0.2, '#ff9000')};

@@ -1,9 +1,10 @@
 import React from 'react';
-
 import { Container } from './styles';
 
 interface TooltipProps {
   title: string;
+  /* Permite a utlização no style.ts do input sem colocarmos
+  no index.tsx */
   className?: string;
 }
 
