@@ -1,10 +1,10 @@
-import React, { useRef, useCallback, useContext } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/AuthContext';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import logoImg from '../../assets/logo.svg';
@@ -23,7 +23,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   /* Pegamos do contexto */
-  const { signIn } = useContext(AuthContext);
+  const { signIn } = useAuth();
 
   /* Criaremos uma função para lidar com o envio de formulário
   para isso utilizaremos o @unform, precisamos dizer ao unform quais campos

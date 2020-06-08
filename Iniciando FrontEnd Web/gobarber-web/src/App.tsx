@@ -4,7 +4,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import GlobalStyle from './styles/global';
 
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider } from './hooks/AuthContext';
 
 /* O provider é um componente que a gente coloca por volta dos componentes que
 a gente quer que tenham acesso ao contexto de autenticação, todo componente dentro
