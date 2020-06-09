@@ -4,7 +4,9 @@ import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
-import { useAuth } from '../../hooks/AuthContext';
+import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
+
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import logoImg from '../../assets/logo.svg';
@@ -24,7 +26,7 @@ const SignIn: React.FC = () => {
 
   /* Pegamos do contexto */
   const { signIn } = useAuth();
-
+  const { addToast } = useToast();
   /* Criaremos uma função para lidar com o envio de formulário
   para isso utilizaremos o @unform, precisamos dizer ao unform quais campos
   queremos que ele traga o valor (registro) */
@@ -46,19 +48,26 @@ const SignIn: React.FC = () => {
         });
 
         /* Verifica as credencias do usuário */
-        signIn({
+        await signIn({
           email: data.email,
           password: data.password,
         });
       } catch (err) {
-        /* Utilizamos uma função de utils para pegar a mensagem dos nossos erros */
-        const errors = getValidationErrors(err);
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
+          formRef.current?.setErrors(errors);
+        }
 
-        /* Seto os erros se a validação falhar */
-        formRef.current?.setErrors(errors);
+        // Disparar um toast
+        addToast({
+          type: 'error',
+          title: 'Erro na autenticação',
+          description:
+            'Ocorreu um erro ao fazer o login, cheque as credenciais.',
+        });
       }
     },
-    [signIn]
+    [signIn, addToast]
   );
 
   return (
