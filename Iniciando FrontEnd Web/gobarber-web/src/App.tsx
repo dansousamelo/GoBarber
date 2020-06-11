@@ -1,7 +1,6 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
 import GlobalStyle from './styles/global';
 
 import AppProvider from './hooks';
@@ -10,14 +9,16 @@ a gente quer que tenham acesso ao contexto de autenticação, todo componente de
 dele (e dentro de um componente que está dentro de um componente) terá acesso a
 informação de autenticação  */
 
+import Routes from './routes';
+
 const App: React.FC = () => (
-  <>
+  <Router>
     <AppProvider>
-      <SignIn />
+      <Routes />
     </AppProvider>
 
     <GlobalStyle />
-  </>
+  </Router>
 );
 
 export default App;
