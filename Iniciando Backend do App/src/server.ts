@@ -17,6 +17,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+/* Criaremos uma rota para saber os arquivos que fizemos upload */
 app.use('/files', express.static(uploadConfig.directory));
 app.use(routes);
 

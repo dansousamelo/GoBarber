@@ -1,4 +1,4 @@
-import { Router, Request } from 'express';
+import { Router } from 'express';
 import multer from 'multer';
 import uploadConfig from '../config/upload';
 
@@ -25,6 +25,7 @@ usersRouter.post('/', async (request, response) => {
   return response.json(user);
 });
 
+/* Utilizamos patch quando queremos atualizar apenas uma opção de um usuário */
 usersRouter.patch(
   '/avatar',
   ensureAuthenticated,

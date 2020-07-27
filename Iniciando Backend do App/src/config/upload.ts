@@ -7,6 +7,9 @@ const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp');
 export default {
   directory: tmpFolder,
 
+  /* Por enquanto iremos salvar no banco, colocamos dentro do gitignore
+  Dentro da pasta teremos um gitkeep que manterá a pasta no git e excluirá
+  os arquivos dentro dela */
   storage: multer.diskStorage({
     destination: tmpFolder,
     filename(request, file, callback) {
