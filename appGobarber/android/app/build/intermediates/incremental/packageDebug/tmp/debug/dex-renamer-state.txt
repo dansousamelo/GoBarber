@@ -1,4 +1,4 @@
-#Wed Jul 15 17:58:05 BRT 2020
+#Mon Jul 27 11:58:10 BRT 2020
 base.0=/home/daniel/Documentos/appGobarber/android/app/build/intermediates/dex/debug/mergeDexDebug/out/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
