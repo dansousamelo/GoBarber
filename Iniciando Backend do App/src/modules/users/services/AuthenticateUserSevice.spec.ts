@@ -20,16 +20,17 @@ describe('AuthenticateUser', () => {
     );
 
     const user = await createUser.execute({
-      name: 'John Doe',
-      email: 'johndoe@example.com',
-      password: '123456',
+      name: 'daniel',
+      email: 'daniel@example.com',
+      password: '123',
     });
 
     const response = await authenticateUser.execute({
-      email: 'johndoe@example.com',
-      password: '123456',
+      email: 'daniel@example.com',
+      password: '123',
     });
 
+    expect(response).toHaveProperty('token');
     expect(response.user).toEqual(user);
   });
 
@@ -42,7 +43,7 @@ describe('AuthenticateUser', () => {
       fakeHashProvider
     );
 
-    expect(
+    await expect(
       authenticateUser.execute({
         email: 'johndoe@example.com',
         password: '123456',
@@ -70,7 +71,7 @@ describe('AuthenticateUser', () => {
       password: '123456',
     });
 
-    expect(
+    await expect(
       authenticateUser.execute({
         email: 'johndoe@example.com',
         password: 'wrong password',
