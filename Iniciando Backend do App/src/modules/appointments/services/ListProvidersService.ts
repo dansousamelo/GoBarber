@@ -1,6 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 
 import IUserRepository from '@modules/users/repositories/IUserRepository';
+import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
 import User from '@modules/users/infra/typeorm/entities/Users';
 
@@ -12,7 +13,10 @@ interface IRequest {
 class ListProfileService {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUserRepository
+    private usersRepository: IUserRepository,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICacheProvider
   ) {}
 
   public async execute({ user_id }: IRequest): Promise<User[]> {
