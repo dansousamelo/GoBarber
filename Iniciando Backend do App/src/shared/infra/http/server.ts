@@ -9,6 +9,7 @@ import 'express-async-errors';
 
 import uploadConfig from '@config/upload';
 import AppError from '@shared/errors/AppError';
+import rateLimiter from './middlewares/rateLimit';
 import routes from './routes';
 
 import '@shared/infra/typeorm';
@@ -16,6 +17,7 @@ import '@shared/container';
 
 const app = express();
 
+app.use(rateLimiter);
 /* Evita que sites que não sejam confiáveis acessem nosso site */
 app.use(cors());
 app.use(express.json());
