@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, { createContext, useContext, useCallback, useState } from 'react';
 import { uuid } from 'uuidv4';
 
 import ToastContainer from '../components/ToastContainer';
@@ -54,7 +54,6 @@ function useToast(): ToastContextData {
   if (!context) {
     throw new Error('useToast must be used within a ToastProvider');
   }
-
   return context;
 }
 

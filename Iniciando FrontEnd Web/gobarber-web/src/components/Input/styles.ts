@@ -8,14 +8,14 @@ interface ContainerProps {
   isErrored: boolean;
 }
 
-/* Estamos passando propriedades ao container */
 export const Container = styled.div<ContainerProps>`
   background: #232129;
   border-radius: 10px;
+  /* Colocamos a bordinha que ficará vermelha */
+  border: 2px solid #232129;
   padding: 16px;
   width: 100%;
 
-  border: 2px solid #232129;
   color: #666360;
 
   display: flex;
@@ -25,14 +25,12 @@ export const Container = styled.div<ContainerProps>`
     margin-top: 8px;
   }
 
-  /* Se temos um erro iremos colocar uma borda vermelha */
   ${(props) =>
     props.isErrored &&
     css`
       border-color: #c53030;
     `}
 
-  /* Estamos mudando apenas a borda e a cor do ícone */
   ${(props) =>
     props.isFocused &&
     css`
@@ -40,13 +38,11 @@ export const Container = styled.div<ContainerProps>`
       border-color: #ff9000;
     `}
 
-  /* Garantimos que quando o input contém algum value o ícone ficará aceso */
   ${(props) =>
     props.isFilled &&
     css`
       color: #ff9000;
     `}
-
 
   input {
     flex: 1;
@@ -65,7 +61,6 @@ export const Container = styled.div<ContainerProps>`
 `;
 
 export const Error = styled(Tooltip)`
-  /* Deixamos o tamanho fixo, mesmo tamanho do ícone */
   height: 20px;
   margin-left: 16px;
 
@@ -73,8 +68,6 @@ export const Error = styled(Tooltip)`
     margin: 0;
   }
 
-  /* Devemos trocar a cor por aqui pois não serão todos os Tooltips que serão
-  de erros */
   span {
     background: #c53030;
     color: #fff;

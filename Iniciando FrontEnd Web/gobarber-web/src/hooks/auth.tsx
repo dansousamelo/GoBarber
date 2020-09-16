@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useState, useContext } from 'react';
+import React, { createContext, useCallback, useContext, useState } from 'react';
 import api from '../services/api';
 
 interface AuthState {
@@ -17,14 +17,8 @@ interface AuthContextData {
   signOut(): void;
 }
 
-/* Espera um valor inicial mas o usuário ainda não está logado
-por isso usamos um hack forçando o objeto a ser um AuthContext */
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-/* Criaremos um componente para fazermos as nossas  autenticações
- Essa lógica só vai executar quando o usuário dar um refresh na página,
- quando ele sair e voltar pro software para carregar as informações que
- estão no storage */
 const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@GoBarber:token');
@@ -45,7 +39,6 @@ const AuthProvider: React.FC = ({ children }) => {
 
     const { token, user } = response.data;
 
-    /* Informações do Token, irei passar via contexto para todos os meus compoentes */
     localStorage.setItem('@GoBarber:token', token);
     localStorage.setItem('@GoBarber:user', JSON.stringify(user));
 
@@ -53,12 +46,11 @@ const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   const signOut = useCallback(() => {
-    localStorage.removetem('@GoBarber:token');
-    localStorage.removetem('@GoBarber:user');
+    localStorage.removeItem('@GoBarber:token');
+    localStorage.removeItem('@GoBarber:user');
 
     setData({} as AuthState);
   }, []);
-
   return (
     <AuthContext.Provider value={{ user: data.user, signIn, signOut }}>
       {children}
