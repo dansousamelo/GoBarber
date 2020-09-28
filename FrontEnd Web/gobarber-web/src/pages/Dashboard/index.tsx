@@ -5,6 +5,7 @@ import DayPicker, { DayModifiers } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 
 import { FiPower, FiClock } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Header,
@@ -120,6 +121,7 @@ const Dashborad: React.FC = () => {
       return parseISO(appointment.date).getHours() < 12;
     });
   }, [appointments]);
+
   const afternoonAppointments = useMemo(() => {
     return appointments.filter((appointment) => {
       return parseISO(appointment.date).getHours() >= 12;
@@ -131,6 +133,7 @@ const Dashborad: React.FC = () => {
       isAfter(parseISO(appointment.date), new Date())
     );
   }, [appointments]);
+
   return (
     <Container>
       <Header>
@@ -145,7 +148,9 @@ const Dashborad: React.FC = () => {
 
             <div>
               <span>Bem-vindo</span>
-              <strong>{user.name}</strong>
+              <Link to="/profile">
+                <strong>{user.name}</strong>
+              </Link>
             </div>
           </Profile>
 
